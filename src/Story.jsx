@@ -65,7 +65,7 @@ const Story = () => {
         <div className='flex flex-row '>
           <CornerBadge
             backgroundColor={backgroundColor}
-            borderRadius='24px'
+            // borderRadius='24px'
             icon={icon}
             isVisible={badgeVisible}
           >
@@ -76,7 +76,7 @@ const Story = () => {
 
           <CornerBadge
             backgroundColor={backgroundColor}
-            borderRadius='6px'
+            // borderRadius='6px'
             icon={icon}
             isVisible={badgeVisible}
           >
@@ -87,7 +87,7 @@ const Story = () => {
 
           <CornerBadge
             backgroundColor={backgroundColor}
-            borderRadius='2px'
+            // borderRadius='2px'
             icon={icon}
             isVisible={badgeVisible}
           >
