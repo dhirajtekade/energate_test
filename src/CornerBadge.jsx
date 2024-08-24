@@ -1,3 +1,4 @@
+import React, { useRef, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const fadeInDiagonal = keyframes`
@@ -20,6 +21,9 @@ const BadgeWrapper = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  // overflow: hidden;
+  // width: 50px;
+  // height: 50px;
 `;
 // interface BadgeStyleProps {
 //     backgroundColor: string
@@ -37,24 +41,36 @@ const StyledBadge = styled.div`
   // border-top-right-radius: ${({ borderRadius }) => borderRadius};
   opacity: 0.05;
   animation: ${fadeInDiagonal} 200ms ease-in-out forwards;
+  //  overflow: hidden;
 `;
 
 export const CornerBadge = ({
   children,
   backgroundColor = '#234',
-  borderRadius = '0',
+  // borderRadius = '0',
   icon,
   isVisible = true,
 }) => {
+  const childRef = useRef(null);
+  const [borderRadius, setBorderRadius] = useState('0');
+
+  useEffect(() => {
+    if (childRef.current && childRef.current.firstChild) {
+      const styles = window.getComputedStyle(childRef.current.firstChild);
+      setBorderRadius(styles.borderTopRightRadius);
+    }
+  }, [children]);
+
+
   return (
     // <div className='flex'>
-      <ChildElement borderRadius={borderRadius}>
+      <ChildElement ref={childRef}  borderRadius={borderRadius}>
         {children}
         {isVisible && (
           <BadgeWrapper>
             <StyledBadge
               backgroundColor={backgroundColor}
-              // borderRadius={borderRadius}
+             
             >
               <div style={{ position: 'absolute', top: '-45px', right: '7px' }}>
                 {icon}
