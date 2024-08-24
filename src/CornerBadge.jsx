@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 const fadeInDiagonal = keyframes`
   from {
     opacity: 0;
-    transform:  translate(5%, -5%);
+    transform:  translate(50%, -50%);
   }
   to {
     opacity: 1;
@@ -13,6 +13,8 @@ const fadeInDiagonal = keyframes`
 
 const ChildElement = styled.div`
   position: relative;
+  border-radius: ${props => props.borderRadius};
+  overflow: hidden;
 `;
 const BadgeWrapper = styled.div`
   position: absolute;
@@ -32,7 +34,7 @@ const StyledBadge = styled.div`
   height: 0;
   border-left: 50px solid transparent;
   border-top: ${({ backgroundColor }) => `50px solid ${backgroundColor}`};
-  border-top-right-radius: ${({ borderRadius }) => borderRadius};
+  // border-top-right-radius: ${({ borderRadius }) => borderRadius};
   opacity: 0.05;
   animation: ${fadeInDiagonal} 200ms ease-in-out forwards;
 `;
@@ -46,13 +48,13 @@ export const CornerBadge = ({
 }) => {
   return (
     // <div className='flex'>
-      <ChildElement>
+      <ChildElement borderRadius={borderRadius}>
         {children}
         {isVisible && (
           <BadgeWrapper>
             <StyledBadge
               backgroundColor={backgroundColor}
-              borderRadius={borderRadius}
+              // borderRadius={borderRadius}
             >
               <div style={{ position: 'absolute', top: '-45px', right: '7px' }}>
                 {icon}
